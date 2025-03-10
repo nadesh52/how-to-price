@@ -23,7 +23,7 @@ const CampaignSelector = ({ onSelect }: any) => {
           />
           <label
             htmlFor="shopee0"
-            className="flex h-16 w-fit flex-col items-center justify-center gap-2 border border-black p-2 transition-all hover:cursor-pointer hover:bg-indigo-100 peer-checked:bg-indigo-600 peer-checked:text-white"
+            className="radio"
           >
             <p>ไม่เข้าร่วม</p>
             <p className="text-xs">(ใช้ส่วนลดจาก Shopee)</p>
@@ -40,7 +40,7 @@ const CampaignSelector = ({ onSelect }: any) => {
           />
           <label
             htmlFor="shopee1"
-            className="flex h-16 w-fit flex-col items-center justify-center gap-2 border border-black p-2 transition-all hover:cursor-pointer hover:bg-indigo-100 peer-checked:bg-indigo-600 peer-checked:text-white"
+            className="radio"
           >
             <Image
               src="/assets/images/shopee/camp1.png"
@@ -62,7 +62,7 @@ const CampaignSelector = ({ onSelect }: any) => {
           />
           <label
             htmlFor="shopee2"
-            className="flex h-16 w-fit flex-col items-center justify-center gap-2 border border-black p-2 transition-all hover:cursor-pointer hover:bg-indigo-100 peer-checked:bg-indigo-600 peer-checked:text-white"
+            className="radio"
           >
             <Image
               src="/assets/images/shopee/camp2.png"
@@ -84,7 +84,7 @@ const CampaignSelector = ({ onSelect }: any) => {
           />
           <label
             htmlFor="shopee3"
-            className="flex h-16 w-fit flex-col items-center justify-center gap-2 border border-black p-2 transition-all hover:cursor-pointer hover:bg-indigo-100 peer-checked:bg-indigo-600 peer-checked:text-white"
+            className="radio"
           >
             <Image
               src="/assets/images/shopee/camp3.png"

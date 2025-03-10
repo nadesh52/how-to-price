@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
+import { useShopee } from "../contexts/ShopeeContext";
 import CampaignSelector from "./CampaignSelector";
 import DropdownCategories from "./DropdownCategories";
 import DropdownPayment from "./DropdownPayment";
-import { useShopee } from "../contexts/ShopeeContext";
 
 const Form = () => {
   const { setShopeeItem } = useShopee();
@@ -30,7 +30,6 @@ const Form = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     setShopeeItem(formData);
-    console.log("Form Data Submitted: ", formData);
   };
 
   return (
@@ -58,33 +57,35 @@ const Form = () => {
             className="input"
           />
         </div>
-        <div className="mb-6 flex flex-col">
-          <label htmlFor="discount" className="label text-blue-800">
-            ส่วนลดจากร้านค้า
-          </label>
-          <input
-            type="number"
-            id="discount"
-            onChange={handleChange}
-            className="input"
-          />
+        <div className="flex flex-row mb-4 justify-between">
+          <div className="flex flex-col">
+            <label htmlFor="discount" className="label text-blue-800">
+              ส่วนลดจากร้านค้า
+            </label>
+            <input
+              type="number"
+              id="discount"
+              onChange={handleChange}
+              className="input"
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="shipping" className="label text-blue-600">
+              ค่าส่ง
+            </label>
+            <input
+              type="number"
+              id="shipping"
+              onChange={handleChange}
+              className="input"
+            />
+          </div>
         </div>
         <hr className="my-6" />
 
         <div className="mb-6 flex flex-col">
-          <label htmlFor="shipping" className="label text-blue-600">
-            ค่าส่ง
-          </label>
-          <input
-            type="number"
-            id="shipping"
-            onChange={handleChange}
-            className="input"
-          />
-        </div>
-
-        <div className="mb-6 flex flex-col">
-          <label htmlFor="shop-coin" className="label text-amber-600">
+          <label htmlFor="shopeeCoin" className="label text-amber-600">
             Shopee Coin
           </label>
           <input
@@ -96,7 +97,7 @@ const Form = () => {
         </div>
 
         <div className="mb-6 flex flex-col">
-          <label htmlFor="shop-discount" className="label text-amber-600">
+          <label htmlFor="shopeeDiscount" className="label text-amber-600">
             ส่วนลดจาก Shopee
           </label>
           <input
@@ -111,7 +112,6 @@ const Form = () => {
             setFormData((prev: any) => ({ ...prev, program: v }))
           }
         />
-        <hr className="my-6" />
         <DropdownPayment
           onSelect={(v: any) =>
             setFormData((prev: any) => ({ ...prev, payment: v }))
@@ -125,7 +125,7 @@ const Form = () => {
         <hr className="my-6" />
         <button
           type="submit"
-          className="h-12 w-full bg-indigo-600 text-white transition-all hover:-translate-x-0.5 hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+          className="bg-primary h-12 w-full rounded-lg border-2 border-black text-white transition-all hover:-translate-y-1 hover:shadow-[0px_8px_0px_0px_rgba(0,0,0,1)]"
         >
           คำนวณ
         </button>

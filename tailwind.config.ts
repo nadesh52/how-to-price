@@ -9,7 +9,8 @@ export default {
   theme: {
     extend: {
       fontFamily: { prompt: ["Prompt"] },
+      colors: { background: "#F6F6F6", "primary": "#FF7E61" },
     },
   },
-  plugins: [require('tailwind-scrollbar')],
+  plugins: [require("tailwind-scrollbar")],
 } satisfies Config;

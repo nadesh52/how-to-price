@@ -56,7 +56,7 @@ const optionItems = [
   { title: "Lifestyle อุปโภคบริโภค และอื่นๆ", saleValue: 8.56, serviceType: 2 },
 ];
 
-const DropdownCategories = ({ onSelect }:any) => {
+const DropdownCategories = ({ onSelect }: any) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState<any>({
     title: "เลือกประเภทสินค้า",
@@ -71,7 +71,7 @@ const DropdownCategories = ({ onSelect }:any) => {
       title: item.title,
       value: item.saleValue,
     });
-    onSelect(item)
+    onSelect(item);
     setIsMenuOpen(false);
   };
 
@@ -95,18 +95,18 @@ const DropdownCategories = ({ onSelect }:any) => {
         type="button"
         ref={listRef}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className="flex h-10 w-full items-center justify-between gap-3 border border-black py-2 pl-3 pr-2 text-left hover:bg-indigo-50"
+        className="selection"
       >
         <p className="pointer-events-none select-none truncate">
           {selectedOption.title}
         </p>
         <ChevronDownIcon
-          className={`${isMenuOpen ? "-rotate-180" : "rotate-0"} pointer-events-none size-6 min-w-6 select-none text-indigo-600 transition-all duration-300`}
+          className={`${isMenuOpen ? "-rotate-180" : "rotate-0"} border-black border rounded-full text-black pointer-events-none size-6 p-1 bg-primary min-w-6 select-none transition-all duration-300`}
         />
       </button>
       <div
         ref={menuRef}
-        className={`${isMenuOpen ? "block" : "hidden"} absolute z-50 max-h-[250px] w-full overflow-y-scroll bg-white py-2 shadow-[0px_0px_0px_1px_rgba(0,0,0,1)] scrollbar-thin scrollbar-track-white scrollbar-thumb-indigo-600`}
+        className={`${isMenuOpen ? "block" : "hidden"} absolute z-50 max-h-[250px] w-full overflow-y-scroll bg-white py-2 shadow-[0px_0px_0px_1px_rgba(0,0,0,1)] rounded-md scrollbar-thin top-[72px] scrollbar-track-white scrollbar-thumb-primary`}
       >
         <ul>
           <li>

@@ -35,7 +35,7 @@ const ResultBox = () => {
   const profit = finalPrice - cost;
 
   return (
-    <div className="mt-6 space-y-2 border border-black p-4">
+    <div className="space-y-1">
       <div className="flex justify-between text-blue-600">
         <p>ราคาสินค้าปกติ</p>
         <p>{price > 0 ? price : null}</p>
