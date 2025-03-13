@@ -1,17 +1,7 @@
 "use client";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import React, { useEffect, useRef, useState } from "react";
-
-const optionItems = [
-  { title: "ชำระปกติ", value: 3 },
-  { title: "Special SPayLater 1-2 เดือน", value: 3 },
-  { title: "Special SPayLater 3 เดือน", value: 4 },
-  { title: "Special SPayLater 5 เดือน", value: 5.5 },
-  { title: "Special SPayLater 12 เดือน", value: 6 },
-  { title: "บัตรเครดิต 3 เดือน", value: 4 },
-  { title: "บัตรเครดิต 6 เดือน", value: 5.5 },
-  { title: "บัตรเครดิต 10 เดือน", value: 6 },
-];
+import { paymentItemsShopee } from "@/constants/shopee";
 
 export default function DropdownPaymentShopee ({ onSelect }:any)  {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -66,7 +56,7 @@ export default function DropdownPaymentShopee ({ onSelect }:any)  {
         className={`${isMenuOpen ? "block" : "hidden"} dropdown-menu`}
       >
         <ul>
-          {optionItems.map((item, index) => (
+          {paymentItemsShopee.map((item, index) => (
             <li key={index}>
               <button
                 type="button"

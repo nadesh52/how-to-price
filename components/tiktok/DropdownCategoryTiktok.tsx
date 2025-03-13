@@ -1,29 +1,7 @@
 "use client";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import React, { useEffect, useRef, useState } from "react";
-
-const optionItems = [
-  {
-    title: "อิเล็กทรอนิกส์",
-    saleValue: 5.35,
-  },
-  {
-    title: "แฟชั่น",
-    saleValue: 6.42,
-  },
-  {
-    title: "ทองคำ อัญมณีต่างๆ ",
-    saleValue: 5.35,
-  },
-  {
-    title: "[FMCG] อุปโภคบริโภค",
-    saleValue: 5.35,
-  },
-  {
-    title: "ไลฟ์สไตล์",
-    saleValue: 5.35,
-  },
-];
+import { optionItemsTiktok } from "@/constants/tiktok";
 
 export default function DropdownCategoryTiktok({ onSelect }: any) {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -86,7 +64,7 @@ export default function DropdownCategoryTiktok({ onSelect }: any) {
               เลือกประเภทสินค้า
             </button>
           </li>
-          {optionItems.map((item, index) => (
+          {optionItemsTiktok.map((item, index) => (
             <li key={index}>
               <button
                 type="button"

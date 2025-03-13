@@ -1,64 +1,7 @@
 "use client";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import React, { useEffect, useRef, useState } from "react";
-
-const optionItems = [
-  {
-    title:
-      "[Electronics] กล้อง, เลนส์, โดรน, เครื่องเกม, คอมพิวเตอร์ตั้งโต๊ะและอุปกรณ์เสริม, โทรศัพท์มือถือ, แท็บเล็ต, ตู้เย็น, ตู้แช่แข็ง",
-    saleValue: 5.35,
-    serviceType: 1,
-  },
-  {
-    title: "[Electronics] เครื่องใช้ไฟฟ้าขนาดใหญ่",
-    saleValue: 5.89,
-    serviceType: 1,
-  },
-  {
-    title: "[Electronics] อุปกรณ์เสริมทีวี",
-    saleValue: 6.42,
-    serviceType: 1,
-  },
-  {
-    title: "[Electronics] เครื่องพิมพ์และอุปกรณ์จัดเก็บข้อมูล",
-    saleValue: 7.49,
-    serviceType: 1,
-  },
-  {
-    title:
-      "[Electronics] เกมและอุปกรณ์เสริม, คีย์บอร์ด & เมาส์, อุปกรณ์สำนักงาน",
-    saleValue: 8.03,
-    serviceType: 1,
-  },
-  {
-    title:
-      "[Electronics] เครื่องเสียง, ลำโพง, หูฟัง, เครื่องขยายเสียง, อุปกรณ์เสริมกล้อง",
-    saleValue: 8.56,
-    serviceType: 1,
-  },
-  {
-    title: "[Fashion] เสื้อผ้า, เครื่องแต่งกาย",
-    saleValue: 9.63,
-    serviceType: 2,
-  },
-  {
-    title:
-      "[Fashion] เครื่องประดับทั่วไป, แหวน, กำไล, สร้อยคอ, ต่างหู, นาฬิกาแฟชั่น",
-    saleValue: 8.03,
-    serviceType: 2,
-  },
-  {
-    title:
-      "[Fashion] เครื่องประดับมีมูลค่า, เพชร, หยก, เงินแท้, ทองคำแท้, แพลทินัม",
-    saleValue: 9.1,
-    serviceType: 1,
-  },
-  {
-    title: "[Lifestyle] อุปโภคบริโภค และอื่นๆ",
-    saleValue: 8.56,
-    serviceType: 2,
-  },
-];
+import { optionItemsShopee } from "@/constants/shopee";
 
 export default function DropdownCategoryShopee({ onSelect }: any) {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -121,7 +64,7 @@ export default function DropdownCategoryShopee({ onSelect }: any) {
               เลือกประเภทสินค้า
             </button>
           </li>
-          {optionItems.map((item, index) => (
+          {optionItemsShopee.map((item, index) => (
             <li key={index}>
               <button
                 type="button"
