@@ -1,11 +1,13 @@
 "use client";
 import React, { useState } from "react";
-import { useShopee } from "../contexts/ShopeeContext";
-import CampaignSelector from "./CampaignSelector";
-import DropdownCategories from "./DropdownCategories";
-import DropdownPayment from "./DropdownPayment";
+import { useShopee } from "@/contexts/ShopeeContext";
+import CampaignSelectorShopee from "./CampaignSelectorShopee";
+import DropdownCategoryShopee from "./DropdownCategoryShopee";
+import DropdownPaymentShopee from "./DropdownPaymentShopee";
+import Line from "@/components/shared/Line";
+import Image from "next/image";
 
-const Form = () => {
+export default function FormShopee() {
   const { setShopeeItem } = useShopee();
   const [formData, setFormData] = useState<any>({
     category: { title: "", saleValue: "" },
@@ -33,8 +35,21 @@ const Form = () => {
   };
 
   return (
-    <section>
-      <form onSubmit={handleSubmit}>
+    <div className="mx-auto max-w-screen-md rounded-[32px] border-4 border-black bg-white shadow-[0px_20px_0px_0px_rgba(0,0,0,1)]">
+      <div className="bg-accent flex items-center justify-between rounded-t-[28px] px-8 py-4">
+        <h2 className="text-left text-2xl font-normal text-white">
+          คิดราคา Shopee
+        </h2>
+        <Image
+          src="/assets/images/shopee/shopee_logo.webp"
+          height={51}
+          width={36}
+          alt="shopee-logo"
+        />
+      </div>
+      <hr className="border-2 border-black" />
+
+      <form onSubmit={handleSubmit} className="p-8">
         <div className="mb-6 flex flex-col">
           <label htmlFor="cost" className="label">
             ราคาทุน
@@ -57,7 +72,7 @@ const Form = () => {
             className="input"
           />
         </div>
-        <div className="flex flex-row mb-4 justify-between">
+        <div className="mb-4 flex flex-row justify-between">
           <div className="flex flex-col">
             <label htmlFor="discount" className="label text-blue-800">
               ส่วนลดจากร้านค้า
@@ -82,7 +97,7 @@ const Form = () => {
             />
           </div>
         </div>
-        <hr className="my-6" />
+        <Line />
 
         <div className="mb-6 flex flex-col">
           <label htmlFor="shopeeCoin" className="label text-amber-600">
@@ -107,31 +122,26 @@ const Form = () => {
             className="input"
           />
         </div>
-        <CampaignSelector
+        <CampaignSelectorShopee
           onSelect={(v: any) =>
             setFormData((prev: any) => ({ ...prev, program: v }))
           }
         />
-        <DropdownPayment
+        <DropdownPaymentShopee
           onSelect={(v: any) =>
             setFormData((prev: any) => ({ ...prev, payment: v }))
           }
         />
-        <DropdownCategories
+        <DropdownCategoryShopee
           onSelect={(v: any) =>
             setFormData((prev: any) => ({ ...prev, category: v }))
           }
         />
         <hr className="my-6" />
-        <button
-          type="submit"
-          className="bg-primary h-12 w-full rounded-lg border-2 border-black text-white transition-all hover:-translate-y-1 hover:shadow-[0px_8px_0px_0px_rgba(0,0,0,1)]"
-        >
+        <button type="submit" className="btn-submit">
           คำนวณ
         </button>
       </form>
-    </section>
+    </div>
   );
 };
-
-export default Form;

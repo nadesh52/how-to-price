@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 
-const CampaignSelector = ({ onSelect }: any) => {
+export default function CampaignSelectorShopee({ onSelect }: any) {
   const handleChange = (e: any) => {
     onSelect(Number(e.target.value));
   };
@@ -21,10 +21,7 @@ const CampaignSelector = ({ onSelect }: any) => {
             className="peer sr-only"
             onChange={handleChange}
           />
-          <label
-            htmlFor="shopee0"
-            className="radio"
-          >
+          <label htmlFor="shopee0" className="radio">
             <p>ไม่เข้าร่วม</p>
             <p className="text-xs">(ใช้ส่วนลดจาก Shopee)</p>
           </label>
@@ -38,10 +35,7 @@ const CampaignSelector = ({ onSelect }: any) => {
             className="peer sr-only"
             onChange={handleChange}
           />
-          <label
-            htmlFor="shopee1"
-            className="radio"
-          >
+          <label htmlFor="shopee1" className="radio">
             <Image
               src="/assets/images/shopee/camp1.png"
               width={65}
@@ -60,10 +54,7 @@ const CampaignSelector = ({ onSelect }: any) => {
             className="peer sr-only"
             onChange={handleChange}
           />
-          <label
-            htmlFor="shopee2"
-            className="radio"
-          >
+          <label htmlFor="shopee2" className="radio">
             <Image
               src="/assets/images/shopee/camp2.png"
               width={56}
@@ -82,10 +73,7 @@ const CampaignSelector = ({ onSelect }: any) => {
             className="peer sr-only"
             onChange={handleChange}
           />
-          <label
-            htmlFor="shopee3"
-            className="radio"
-          >
+          <label htmlFor="shopee3" className="radio">
             <Image
               src="/assets/images/shopee/camp3.png"
               width={116}
@@ -98,6 +86,4 @@ const CampaignSelector = ({ onSelect }: any) => {
       </div>
     </div>
   );
-};
-
-export default CampaignSelector;
+}

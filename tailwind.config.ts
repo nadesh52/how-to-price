@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       fontFamily: { prompt: ["Prompt"] },
-      colors: { background: "#F6F6F6", "primary": "#FF7E61" },
+      colors: { background: "#FFC567", "primary": "#FD5A46", secondary: "#00995e", "accent": "#058CD7" },
     },
   },
   plugins: [require("tailwind-scrollbar")],

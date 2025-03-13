@@ -6,9 +6,9 @@ export const getSellerPrice = (_price: number, _voucher: number) => {
   return Number(_price) - Number(_voucher);
 };
 
-export const getSaleTransactionFee = (_price: any, _categoty: any) => {
+export const getSaleTransactionFee = (_price: any, _category: any) => {
   const price = Number(_price);
-  const valuePct = Number(_categoty.saleValue) / 100;
+  const valuePct = Number(_category.saleValue) / 100;
   const result = price * valuePct;
   return Math.round(result);
 };

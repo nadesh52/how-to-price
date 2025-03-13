@@ -42,26 +42,44 @@
 
 @layer components {
   body {
-    @apply font-prompt font-light selection:bg-primary selection:text-black;
+    @apply selection:bg-primary font-prompt font-light selection:text-black;
   }
 
   .input {
-    @apply h-10 rounded-md bg-white p-4 ring-1 ring-inset ring-black focus-visible:ring-2 focus-visible:ring-black;
-  }
-  
-  .selection {
-    @apply flex h-10 w-full items-center justify-between gap-3 border rounded-md border-black py-2 pl-3 pr-2 text-left hover:bg-primary/5
-  }
-
-  .option {
-    @apply w-full p-2 text-left hover:bg-primary hover:text-white;
+    @apply focus-visible:ring-accent bg-primary/10 h-10 rounded-full p-4 outline-none ring-2 ring-black focus-visible:ring-4;
   }
 
   .radio {
-    @apply peer-checked:bg-primary hover:bg-primary flex h-16 w-fit flex-col items-center justify-center gap-2 rounded-md border border-black p-2 peer-checked:shadow-[0px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:cursor-pointer hover:text-white hover:shadow-[0px_6px_0px_0px_rgba(0,0,0,1)] peer-checked:text-white;
+    @apply peer-checked:bg-primary hover:bg-primary flex h-16 w-fit flex-col items-center justify-center gap-2 rounded-md border border-black bg-white p-2 transition-all hover:cursor-pointer hover:text-white hover:shadow-[0px_6px_0px_0px_rgba(0,0,0,1)] peer-checked:text-white peer-checked:shadow-[0px_4px_0px_0px_rgba(0,0,0,1)];
   }
 
   .label {
     @apply mb-1 text-sm font-normal;
+  }
+
+  .btn-submit {
+    @apply bg-secondary h-12 w-full rounded-full border-2 border-black text-lg font-semibold tracking-wider transition-all hover:-translate-y-1 hover:shadow-[0px_12px_0px_1px_rgba(0,0,0,1)];
+  }
+
+  .result {
+    @apply mx-auto mt-10 max-w-screen-md rounded-[32px] border-4 border-black bg-white p-8 shadow-[0px_16px_0px_0px_rgba(0,0,0,1)];
+  }
+
+  /* dropdown */
+
+  .selection {
+    @apply hover:bg-primary flex h-10 w-full items-center justify-between gap-3 border-2 border-black bg-primary/10 p-4 text-left;
+  }
+
+  .selection-arrow {
+    @apply bg-primary pointer-events-none size-6 min-w-6 select-none rounded-full border-2 border-black p-1 text-black transition-all duration-300;
+  }
+
+  .dropdown-menu {
+    @apply scrollbar-thumb-primary absolute top-[70px] z-50 max-h-[250px] w-full overflow-y-scroll rounded-b-[22px] border-2 border-black bg-white py-2 shadow-[0px_6px_0px_0px_rgba(0,0,0,1)] scrollbar-thin scrollbar-track-transparent;
+  }
+
+  .option {
+    @apply hover:bg-primary w-full p-2 text-left hover:text-white;
   }
 }
