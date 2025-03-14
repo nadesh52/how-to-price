@@ -10,13 +10,13 @@ export const getSaleTransactionFee = (_price: any, _category: any) => {
   const price = Number(_price);
   const valuePct = Number(_category.saleValue) / 100;
   const result = price * valuePct;
-  return Math.round(result);
+  return result;
 };
 
 export const getTransactionFee = (_price: any, _paymentMethod: any) => {
   const price = Number(_price);
   const valuePct = Number(_paymentMethod.value) / 100;
-  return Math.round(price * vatCalc(valuePct));
+  return price * vatCalc(valuePct);
 };
 
 export const getServiceFee = (_price: any, _program: any, _category: any) => {
@@ -70,6 +70,7 @@ export const getServiceFee = (_price: any, _program: any, _category: any) => {
       break;
   }
   const toPct = val / 100;
+  const pct = vatCalc(toPct)
   const result = _price * vatCalc(toPct);
-  return Math.round(result);
+  return {pct,result};
 };

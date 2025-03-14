@@ -1,15 +1,19 @@
 import type { NextConfig } from "next";
+const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  async redirects() {
-    return [
+  output: isProd ? "export" : "standalone",
+  trailingSlash: true,
+  // basePath: "/how-to-price",
+  // assetPrefix: "/how-to-price/",
+  images: {
+    unoptimized: true,
+    remotePatterns: [
       {
-        source: '/',
-        destination: '/shopee',
-        permanent: true,
+        protocol: "https",
+        hostname: "**",
       },
-    ];
+    ],
   },
 };
 

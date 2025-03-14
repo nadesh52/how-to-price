@@ -3,7 +3,7 @@ import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import React, { useEffect, useRef, useState } from "react";
 import { optionItemsLazada } from "@/constants/lazada";
 
-export default function DropdownCategoryLazada({ onSelect }: any) {
+export default function DropdownCategoryLazada({ onSelect }: any): any {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState<any>({
     title: "เลือกประเภทสินค้า",

@@ -46,7 +46,7 @@
   }
 
   .input {
-    @apply focus-visible:ring-accent bg-primary/10 h-10 rounded-full p-4 outline-none ring-2 ring-black focus-visible:ring-4;
+    @apply focus-visible:ring-accent bg-primary/5 h-10 rounded-full p-4 outline-none ring-2 ring-black focus-visible:ring-4;
   }
 
   .radio {

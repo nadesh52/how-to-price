@@ -1,104 +1,107 @@
 export const optionItemsLazada: any = [
   {
     title: (
-      <p>
-        <span className="text-accent font-normal">[อิเล็กทรอนิกส์]</span> โทรศัพท์มือถือ
-        แท็บเล็ต คอมพิวเตอร์ โดรน
-      </p>
+      <>
+        <span className="font-normal text-accent">[อิเล็กทรอนิกส์]</span>{" "}
+        โทรศัพท์มือถือ แท็บเล็ต คอมพิวเตอร์ โดรน
+      </>
     ),
-    saleValue: 5,
+    saleValue: 5.35,
   },
   {
     title: (
-      <p>
-        <span className="text-accent font-normal">[อิเล็กทรอนิกส์]</span>{" "}
+      <>
+        <span className="font-normal text-accent">[อิเล็กทรอนิกส์]</span>{" "}
         อุปกรณ์จัดเก็บข้อมูล เครื่องเล่นเกมคอนโซล
-      </p>
+      </>
     ),
-    saleValue: 7,
+    saleValue: 7.49,
   },
   {
     title: (
-      <p>
-        <span className="text-accent font-normal">[อิเล็กทรอนิกส์]</span>{" "}
+      <>
+        <span className="font-normal text-accent">[อิเล็กทรอนิกส์]</span>{" "}
         เครื่องใช้ไฟฟ้าขนาดใหญ่
-      </p>
+      </>
     ),
-    saleValue: 5.5,
+    saleValue: 5.89,
   },
   {
     title: (
-      <p>
-        <span className="text-accent font-normal">[อิเล็กทรอนิกส์]</span>{" "}
+      <>
+        <span className="font-normal text-accent">[อิเล็กทรอนิกส์]</span>{" "}
         โทรทัศน์และวีดีโอ
-      </p>
+      </>
     ),
-    saleValue: 6,
+    saleValue: 6.42,
   },
   {
     title: (
-      <p>
-        <span className="text-accent font-normal">[อิเล็กทรอนิกส์]</span>{" "}
+      <>
+        <span className="font-normal text-accent">[อิเล็กทรอนิกส์]</span>{" "}
         เครื่องใช้ไฟฟ้าขนาดเล็ก อุปกรณ์โปรเจกเตอร์ ออดิโอ้
-      </p>
+      </>
     ),
-    saleValue: 7.5,
+    saleValue: 8.03,
   },
   {
     title: (
-      <p>
-        <span className="text-accent font-normal">[อิเล็กทรอนิกส์]</span> กล้องถ่ายภาพ
-        ระบบรักษาความปลอดภับ
-      </p>
+      <>
+        <span className="font-normal text-accent">[อิเล็กทรอนิกส์]</span>{" "}
+        กล้องถ่ายภาพ ระบบรักษาความปลอดภัย
+      </>
     ),
-    saleValue: 8,
+    saleValue: 8.56,
   },
   {
     title: (
-      <p>
-        <span className="text-accent font-normal">[ทั่วไป]</span> อื่นๆ
-      </p>
+      <>
+        <span className="font-normal text-accent">[ทั่วไป]</span> อื่นๆ
+      </>
     ),
-    saleValue: 8,
+    saleValue: 8.56,
   },
   {
     title: (
-      <p>
-        <span className="text-accent font-normal">[ทั่วไป]</span> ยานยนต์และอุปกรณ์
-      </p>
+      <>
+        <span className="font-normal text-accent">[ทั่วไป]</span>{" "}
+        ยานยนต์และอุปกรณ์
+      </>
     ),
-    saleValue: 7.5,
+    saleValue: 8.03,
   },
   {
     title: (
-      <p>
-        <span className="text-accent font-normal">[แฟชั่น]</span> อื่นๆ
-      </p>
+      <>
+        <span className="font-normal text-accent">[แฟชั่น]</span> อื่นๆ
+      </>
     ),
-    saleValue: 9,
+    saleValue: 9.63,
   },
   {
     title: (
-      <p>
-        <span className="text-accent font-normal">[แฟชั่น]</span> เครื่องประดับแฟชั่น
-      </p>
+      <>
+        <span className="font-normal text-accent">[แฟชั่น]</span>{" "}
+        เครื่องประดับแฟชั่น
+      </>
     ),
-    saleValue: 7.5,
+    saleValue: 8.03,
   },
   {
     title: (
-      <p>
-        <span className="text-accent font-normal">[อุปโภคบริโภค]</span> อื่นๆ
-      </p>
+      <>
+        <span className="font-normal text-accent">[อุปโภคบริโภค]</span> อื่นๆ
+      </>
     ),
-    saleValue: 8,
+    saleValue: 8.56,
   },
   {
     title: (
-      <p>
-        <span className="text-accent font-normal">[บัตรกำนัลดิจิตอล]</span> อื่นๆ
-      </p>
+      <>
+        <span className="font-normal text-accent">[บัตรกำนัลดิจิตอล]</span>{" "}
+        อื่นๆ
+      </>
     ),
-    saleValue: 7,
+    saleValue: 7.49,
   },
 ];

@@ -36,7 +36,7 @@ export default function FormShopee() {
 
   return (
     <div className="mx-auto max-w-screen-md rounded-[32px] border-4 border-black bg-white shadow-[0px_20px_0px_0px_rgba(0,0,0,1)]">
-      <div className="bg-accent flex items-center justify-between rounded-t-[28px] px-8 py-4">
+      <div className="flex items-center justify-between rounded-t-[28px] bg-accent px-8 py-4">
         <h2 className="text-left text-2xl font-normal text-white">
           คิดราคา Shopee
         </h2>
@@ -72,30 +72,27 @@ export default function FormShopee() {
             className="input"
           />
         </div>
-        <div className="mb-4 flex flex-row justify-between">
-          <div className="flex flex-col">
-            <label htmlFor="discount" className="label text-blue-800">
-              ส่วนลดจากร้านค้า
-            </label>
-            <input
-              type="number"
-              id="discount"
-              onChange={handleChange}
-              className="input"
-            />
-          </div>
-
-          <div className="flex flex-col">
-            <label htmlFor="shipping" className="label text-blue-600">
-              ค่าส่ง
-            </label>
-            <input
-              type="number"
-              id="shipping"
-              onChange={handleChange}
-              className="input"
-            />
-          </div>
+        <div className="mb-6 flex flex-col">
+          <label htmlFor="discount" className="label text-blue-800">
+            ส่วนลดจากร้านค้า
+          </label>
+          <input
+            type="number"
+            id="discount"
+            onChange={handleChange}
+            className="input"
+          />
+        </div>
+        <div className="mb-6 flex flex-col">
+          <label htmlFor="shipping" className="label text-blue-600">
+            ค่าส่ง
+          </label>
+          <input
+            type="number"
+            id="shipping"
+            onChange={handleChange}
+            className="input"
+          />
         </div>
         <Line />
 
@@ -144,4 +141,4 @@ export default function FormShopee() {
       </form>
     </div>
   );
-};
+}

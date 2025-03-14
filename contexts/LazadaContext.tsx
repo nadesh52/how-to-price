@@ -7,6 +7,7 @@ const initialFormData = {
   price: 0,
   discount: 0,
   shipping: 0,
+  shippingSeller: 0,
   lazadaDiscount: 0,
   shippingDiscount: 0,
 };

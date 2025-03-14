@@ -1,11 +1,6 @@
 "use client";
-import Line from "@/components/shared/Line";
 import { useTiktok } from "@/contexts/TiktokContext";
-import {
-  getCommissionFee,
-  getSellerPrice,
-  getTransactionFee,
-} from "@/utils/tiktokFormula";
+import { getCommissionFee } from "@/utils/tiktokFormula";
 import React from "react";
 
 export default function ResultTiktok() {
@@ -13,82 +8,114 @@ export default function ResultTiktok() {
   const { category, cost, price, discount, shipping, tiktokDiscount } =
     tiktokItem;
 
-  const sellerPrice = getSellerPrice(price, discount);
+  const baseVatPct = 0.0321;
+
+  const sellerPrice = Number(price) - Number(discount);
   const sellerAfterShipping = Number(sellerPrice) + Number(shipping);
-  const buyerPrice =
-    Number(sellerPrice) - Number(tiktokDiscount) + Number(shipping);
-  const commissionFee = getCommissionFee(sellerPrice, category);
-  const transactionFee = getTransactionFee(sellerAfterShipping);
-  const sumFee = commissionFee + transactionFee;
-  const finalPrice = sellerAfterShipping - sumFee;
-  const profit = finalPrice - cost;
+  const buyerPrice = sellerPrice - Number(tiktokDiscount) + Number(shipping);
+
+  const commissionFee = sellerPrice * Number(category.saleValue / 100);
+  const transactionFee = sellerAfterShipping * baseVatPct;
+  const totalFee = commissionFee + transactionFee;
+
+  const finalPrice = sellerAfterShipping - totalFee;
+  const profit = finalPrice - Number(cost);
 
   return (
     <section className="result">
-      <div className="space-y-1">
-        <div className="flex justify-between text-blue-600 hover:bg-blue-50">
-          <p>ราคาสินค้าปกติ</p>
-          <p>{price > 0 ? price : null}</p>
-        </div>
+      <table className="w-full border-collapse">
+        <tbody>
+          {/* Normal Price */}
+          <tr className="text-blue-600 hover:bg-blue-50">
+            <td className="p-2">ราคาสินค้าปกติ</td>
+            <td className="p-2"></td>
+            <td className="p-2 text-right">{price > 0 ? price : null}</td>
+          </tr>
 
-        <div className="flex justify-between text-blue-800 hover:bg-blue-50">
-          <p>ส่วนลดผู้ขาย</p>
-          <p>{discount > 0 ? discount : null}</p>
-        </div>
+          {/* Seller Discount */}
+          <tr className="text-blue-800 hover:bg-blue-50">
+            <td className="p-2">ส่วนลดผู้ขาย</td>
+            <td className="p-2"></td>
+            <td className="p-2 text-right">{discount > 0 ? discount : null}</td>
+          </tr>
 
-        <div className="flex justify-between font-normal underline underline-offset-2 hover:bg-gray-100">
-          <p>ยอดรวมหลังหักส่วนลดผู้ขาย</p>
-          <p>{sellerPrice > 0 ? sellerPrice : null}</p>
-        </div>
+          {/* Seller Price after Discount */}
+          <tr className="border-b border-gray-300 font-medium hover:bg-gray-100">
+            <td className="p-2">ยอดรวมหลังหักส่วนลดผู้ขาย</td>
+            <td className="p-2 text-right text-sm">
+              ({price}-{discount})
+            </td>
+            <td className="p-2 text-right underline underline-offset-4">
+              {sellerPrice > 0 ? sellerPrice : null}
+            </td>
+          </tr>
 
-        <Line />
+          {/* Shipping */}
+          <tr className="text-blue-600 hover:bg-blue-50">
+            <td className="p-2">ค่าจัดส่ง</td>
+            <td className="p-2"></td>
+            <td className="p-2 text-right">{shipping > 0 ? shipping : null}</td>
+          </tr>
 
-        <div className="flex justify-between text-blue-600 hover:bg-blue-50">
-          <p>ค่าจัดส่ง</p>
-          <p>{shipping > 0 ? shipping : null}</p>
-        </div>
+          {/* Tiktok Discount */}
+          <tr className="text-amber-600 hover:bg-amber-50">
+            <td className="p-2">ส่วนลดจาก Tiktok</td>
+            <td className="p-2"></td>
+            <td className="p-2 text-right">
+              {tiktokDiscount > 0 ? tiktokDiscount : null}
+            </td>
+          </tr>
 
-        <div className="flex justify-between text-amber-600 hover:bg-amber-50">
-          <p>ส่วนลดจาก Tiktok</p>
-          <p>{tiktokDiscount > 0 ? tiktokDiscount : null}</p>
-        </div>
+          {/* Final Buyer Price */}
+          <tr className="border-b border-gray-300 font-normal underline underline-offset-2 hover:bg-gray-100">
+            <td className="p-2">ยอดที่ผู้ซื้อต้องจ่าย</td>
+            <td className="p-2 text-right text-sm">
+              {`(${sellerPrice}+${shipping}-${tiktokDiscount})`}
+            </td>
+            <td className="p-2 text-right">
+              {buyerPrice > 0 ? buyerPrice : null}
+            </td>
+          </tr>
 
-        <div className="flex justify-between font-normal underline underline-offset-2 hover:bg-gray-100">
-          <p>ยอดที่ผู้ซื้อต้องจ่าย</p>
-          <p>{buyerPrice > 0 ? buyerPrice : null}</p>
-        </div>
+          {/* Commission Fee */}
+          <tr className="text-red-600 hover:bg-red-50">
+            <td className="p-2">ค่าคอมมิชชั่น (vat 7%)</td>
+            <td className="p-2 text-right text-sm">{`(${sellerPrice}*${((category.saleValue * 100) / (100 - 3)).toFixed(2)}%)`}</td>
+            <td className="p-2 text-right">
+              {commissionFee > 0 ? commissionFee.toFixed(2) : null}
+            </td>
+          </tr>
 
-        <Line />
+          {/* Transaction Fee */}
+          <tr className="text-red-600 hover:bg-red-50">
+            <td className="p-2">ค่าธรรมเนียมคำสั่งซื้อ (vat 7%)</td>
+            <td className="p-2 text-right text-sm">{`(${sellerAfterShipping}*${(baseVatPct * 100).toFixed(2)}%)`}</td>
+            <td className="p-2 text-right">
+              {transactionFee > 0 ? transactionFee.toFixed(2) : null}
+            </td>
+          </tr>
 
-        <div className="flex justify-between text-red-600 hover:bg-red-50">
-          <p>ค่าคอมมิชชั่น</p>
-          <p>{commissionFee > 0 ? commissionFee : null}</p>
-        </div>
+          {/* Final Price */}
+          <tr className="border-b border-gray-300 hover:bg-gray-100">
+            <td className="p-2">ยอดเงินที่ร้านค้าจะได้รับ</td>
+            <td className="p-2 text-right text-sm">
+              ({sellerPrice}-{commissionFee.toFixed(2)}-{transactionFee.toFixed(2)})
+            </td>
+            <td className="p-2 text-right">
+              {finalPrice > 0 ? finalPrice.toFixed(2) : null}
+            </td>
+          </tr>
 
-        <div className="flex justify-between text-red-600 hover:bg-red-50">
-          <p>ค่าธรรมเนียมคำสั่งซื้อ</p>
-          <p>{transactionFee > 0 ? transactionFee : null}</p>
-        </div>
-
-        <Line />
-
-        <div className="flex justify-between font-normal hover:bg-gray-100">
-          <p>ยอดเงินที่ร้านค้าจะได้รับ</p>
-          <p>{finalPrice > 0 ? finalPrice : null}</p>
-        </div>
-
-        <div className="flex justify-between hover:bg-gray-100">
-          <p>ราคาทุน</p>
-          <p>{cost > 0 ? cost : null}</p>
-        </div>
-
-        <Line />
-
-        <div className="flex justify-between text-lg font-medium text-emerald-600 hover:bg-emerald-50">
-          <p>กำไรที่จะได้จากการขาย</p>
-          <p>{profit > 0 ? profit : null}</p>
-        </div>
-      </div>
+          {/* Profit */}
+          <tr className="text-lg font-medium text-emerald-600 hover:bg-emerald-50">
+            <td className="p-2">กำไรที่จะได้จากการขาย</td>
+            <td className="p-2 text-right text-sm">
+              {`(${finalPrice.toFixed(2)}-${cost})`}
+            </td>
+            <td className="p-2 text-right">{profit > 0 ? profit.toFixed(2) : null}</td>
+          </tr>
+        </tbody>
+      </table>
 
       <hr className="my-3" />
       <div className="text-xs">

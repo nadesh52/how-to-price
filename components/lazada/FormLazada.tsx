@@ -3,9 +3,20 @@ import Line from "@/components/shared/Line";
 import Image from "next/image";
 import React, { useState } from "react";
 import DropdownCategoryLazada from "./DropdownCategoryLazada";
+import { useLazada } from "@/contexts/LazadaContext";
 
 export default function FormLazada() {
-  const [formData, setFormData] = useState<any>();
+  const {setLazadaItem} = useLazada();
+  const [formData, setFormData] = useState<any>({
+    category: { title: "", saleValue: "" },
+    cost: 0,
+    price: 0,
+    discount: 0,
+    shipping: 0,
+    shippingSeller: 0,
+    lazadaDiscount: 0,
+    shippingDiscount: 0,
+  });
 
   const handleChange = (e: any) => {
     const { id, value } = e.target;
@@ -14,6 +25,11 @@ export default function FormLazada() {
       [id]: value,
     }));
   };
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    setLazadaItem(formData);
+  };
+
   return (
     <div className="mx-auto max-w-screen-md rounded-[32px] border-4 border-black bg-white shadow-[0px_20px_0px_0px_rgba(0,0,0,1)]">
       <div className="flex items-center justify-between rounded-t-[28px] bg-accent px-8 py-4">
@@ -29,7 +45,7 @@ export default function FormLazada() {
       </div>
       <hr className="border-2 border-black" />
 
-      <form className="p-8">
+      <form onSubmit={handleSubmit} className="p-8">
         <div className="mb-6 flex flex-col">
           <label htmlFor="cost" className="label">
             ราคาทุน
@@ -64,8 +80,19 @@ export default function FormLazada() {
           />
         </div>
         <div className="mb-6 flex flex-col">
+          <label htmlFor="shippingSeller" className="label text-blue-600">
+            ค่าส่งโดยผู้ขาย
+          </label>
+          <input
+            type="number"
+            id="shippingSeller"
+            onChange={handleChange}
+            className="input"
+          />
+        </div>
+        <div className="mb-6 flex flex-col">
           <label htmlFor="shipping" className="label text-blue-600">
-            ค่าส่ง
+            ค่าส่งที่ผู้ซื้อจ่าย
           </label>
           <input
             type="number"
@@ -76,23 +103,23 @@ export default function FormLazada() {
         </div>
         <Line />
         <div className="mb-6 flex flex-col">
-          <label htmlFor="shopeeDiscount" className="label text-amber-600">
+          <label htmlFor="lazadaDiscount" className="label text-amber-600">
             ส่วนลดจาก Lazada (%)
           </label>
           <input
             type="number"
-            id="shopeeDiscount"
+            id="lazadaDiscount"
             onChange={handleChange}
             className="input"
           />
         </div>
         <div className="mb-6 flex flex-col">
-          <label htmlFor="shopeeCoin" className="label text-amber-600">
+          <label htmlFor="shippingDiscount" className="label text-amber-600">
             คูปองส่วนลดค่าส่ง
           </label>
           <input
             type="number"
-            id="shopeeCoin"
+            id="shippingDiscount"
             onChange={handleChange}
             className="input"
           />
