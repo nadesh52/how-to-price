@@ -92,7 +92,7 @@ export default function FormShopee() {
           />
         </div>
         <div className="flex flex-row items-center gap-4">
-          <div className="mb-6 flex flex-col flex-1">
+          <div className="mb-6 flex flex-1 flex-col">
             <label htmlFor="shipping" className="label">
               ค่าส่ง
             </label>
@@ -106,7 +106,7 @@ export default function FormShopee() {
           <div>
             <label
               htmlFor="isFreeShipping"
-              className="group relative flex flex-row items-center gap-2"
+              className="group relative flex select-none flex-row items-center gap-2"
             >
               <input
                 type="checkbox"
@@ -114,7 +114,7 @@ export default function FormShopee() {
                 className="peer sr-only"
                 onChange={handleToggle}
               />
-              <div className="h-10 w-24 rounded-full border-2 transition-all border-black bg-primary/5 px-1 peer-checked:bg-primary"></div>
+              <div className="h-10 w-24 rounded-full border-2 border-black bg-primary/5 px-1 transition-all peer-checked:bg-primary"></div>
               <div className="absolute flex h-8 w-12 translate-x-1 translate-y-0 items-center justify-center rounded-full border-2 border-black bg-secondary transition-all duration-200 ease-in peer-checked:translate-x-11">
                 <p className="text-center font-medium text-white group-has-[:checked]:hidden">
                   ปิด

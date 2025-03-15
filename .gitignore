@@ -17,6 +17,8 @@
 /.next/
 /out/
 
+/out/404.html
+
 # production
 /build
 

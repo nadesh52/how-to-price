@@ -6,7 +6,7 @@ import DropdownCategoryLazada from "./DropdownCategoryLazada";
 import { useLazada } from "@/contexts/LazadaContext";
 
 export default function FormLazada() {
-  const {setLazadaItem} = useLazada();
+  const { setLazadaItem } = useLazada();
   const [formData, setFormData] = useState<any>({
     category: { title: "", saleValue: "" },
     cost: 0,
@@ -14,7 +14,6 @@ export default function FormLazada() {
     discount: 0,
     shipping: 0,
     shippingSeller: 0,
-    lazadaDiscount: 0,
     shippingDiscount: 0,
   });
 
@@ -70,7 +69,7 @@ export default function FormLazada() {
         </div>
         <div className="mb-6 flex flex-col">
           <label htmlFor="discount" className="label text-blue-800">
-            คูปองจากผู้ขาย
+            คูปองส่วนลดจากผู้ขาย
           </label>
           <input
             type="number"
@@ -79,9 +78,10 @@ export default function FormLazada() {
             className="input"
           />
         </div>
+        <Line />
         <div className="mb-6 flex flex-col">
           <label htmlFor="shippingSeller" className="label text-blue-600">
-            ค่าส่งโดยผู้ขาย
+            ค่าส่งชำระโดยผู้ขาย
           </label>
           <input
             type="number"
@@ -92,23 +92,11 @@ export default function FormLazada() {
         </div>
         <div className="mb-6 flex flex-col">
           <label htmlFor="shipping" className="label text-blue-600">
-            ค่าส่งที่ผู้ซื้อจ่าย
+            ค่าส่งชำระโดยผู้ซื้อ
           </label>
           <input
             type="number"
             id="shipping"
-            onChange={handleChange}
-            className="input"
-          />
-        </div>
-        <Line />
-        <div className="mb-6 flex flex-col">
-          <label htmlFor="lazadaDiscount" className="label text-amber-600">
-            ส่วนลดจาก Lazada (%)
-          </label>
-          <input
-            type="number"
-            id="lazadaDiscount"
             onChange={handleChange}
             className="input"
           />
@@ -136,4 +124,4 @@ export default function FormLazada() {
       </form>
     </div>
   );
-};
+}

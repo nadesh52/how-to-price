@@ -13,7 +13,6 @@ export default function ResultLazada() {
     discount,
     shipping,
     shippingSeller,
-    lazadaDiscount,
     shippingDiscount,
   } = lazadaItem;
 
@@ -21,26 +20,34 @@ export default function ResultLazada() {
 
   const totalPrice = Number(price); // ยอดรวมค่าสินค้า
   const sellerCoupon = Number(discount); // หักค่าคูปองจากผู้ขาย
-  const sellerPrice = totalPrice - sellerCoupon; // ราคาขาย
-
-  const shippingPaidBySeller = Number(shippingSeller);
-  const shippingPaidByBuyer = Number(shipping); // ค่าขนส่งชำระโดยผู้ซื้อ
+  const shippingFromBuyer = Number(shipping);
   const shippingCoupon = Number(shippingDiscount); // คูปองส่วนลดการจัดส่ง
+  const shippingPaidBySeller = Number(shippingSeller);
+
+  const salePrice = totalPrice - sellerCoupon; // ราคาขาย
   const totalShippingCost =
-    Number(shippingPaidByBuyer) +
-    Number(shippingDiscount) -
-    Number(shippingPaidBySeller); // ค่าขนส่งที่ผู้ขายต้องชำระ
+    shippingPaidBySeller - shippingFromBuyer - shippingCoupon; // ค่าขนส่งที่ผู้ขายต้องชำระ
 
-  const platformDiscount = sellerPrice * Number(lazadaDiscount / 100);
-  const totalPaidByBuyer =
-    sellerPrice + shippingPaidByBuyer - platformDiscount - shippingCoupon; // รวมยอดเงินที่ลูกค้าชำระ
+  const serviceFee =
+    (totalPrice - sellerCoupon) * Number(category.saleValue / 100);
 
-  const serviceFee = Number(sellerPrice) * Number(category.saleValue / 100);
-  const transactionFee = totalPaidByBuyer * baseVatPct; // ค่าธรรมเนียมการชำระเงิน
+  const sumSaleServiceShipping =
+    totalPrice - sellerCoupon - sellerCoupon - serviceFee;
+  const sumPaidByBuyer = totalPrice - sellerCoupon + shippingFromBuyer;
+
+  const transactionFee = sumPaidByBuyer * baseVatPct; // ค่าธรรมเนียมการชำระเงิน
 
   const finalPrice =
-    sellerPrice - transactionFee - serviceFee - totalShippingCost; // ยอดรวมทั้งหมด
+    totalPrice - sellerCoupon - transactionFee - serviceFee - totalShippingCost; // ยอดรวมทั้งหมด
+
   const profit = finalPrice - Number(cost); // กำไร
+
+  console.log(
+    totalShippingCost,
+    shippingPaidBySeller,
+    shippingFromBuyer,
+    sellerCoupon,
+  );
 
   return (
     <section className="result">
@@ -56,83 +63,99 @@ export default function ResultLazada() {
             <td className="p-2"></td>
             <td className="p-2 text-right">{sellerCoupon}</td>
           </tr>
-          <tr className="border-b border-gray-300 font-normal hover:bg-gray-100">
+          <tr className="font-normal hover:bg-gray-100">
             <td className="p-2">ราคาขาย</td>
             <td className="p-2 text-right text-sm">
               ({price}-{discount})
             </td>
-            <td className="p-2 text-right">
-              {sellerPrice}
-            </td>
+            <td className="p-2 text-right">{salePrice}</td>
           </tr>
-          <tr className="text-blue-600 hover:bg-blue-50">
-            <td className="p-2">ค่าส่งโดยผู้ขาย</td>
-            <td className="p-2"></td>
-            <td className="p-2 text-right">{shippingPaidBySeller}</td>
-          </tr>
-          <tr className="text-blue-600 hover:bg-blue-50">
-            <td className="p-2">ค่าส่งที่ผู้ซื้อจ่าย</td>
-            <td className="p-2"></td>
-            <td className="p-2 text-right">{shippingPaidByBuyer}</td>
-          </tr>
-          <tr className="text-amber-600 hover:bg-amber-50">
-            <td className="p-2">คูปองส่วนลดค่าส่ง</td>
-            <td className="p-2"></td>
-            <td className="p-2 text-right">{shippingDiscount}</td>
-          </tr>
-          <tr className="border-b border-gray-300 font-normal hover:bg-gray-100">
-            <td className="p-2">ค่าขนส่งที่ผู้ขายต้องชำระ</td>
-            <td className="p-2 text-right text-sm">
-              ({shippingPaidByBuyer}+{shippingCoupon}-{shippingPaidBySeller})
-            </td>
-            <td className="p-2 text-right">
-              {totalShippingCost}
-            </td>
-          </tr>
-          <tr className="text-amber-600 hover:bg-amber-50">
-            <td className="p-2">ส่วนลดจาก Lazada</td>
-            <td className="p-2 text-right text-sm">({lazadaDiscount}%)</td>
-            <td className="p-2 text-right">{platformDiscount}</td>
-          </tr>
-          <tr className="border-b border-gray-300 font-normal hover:bg-gray-100">
-            <td className="p-2">รวมยอดที่ผู้ซื้อชำระ</td>
-            <td className="p-2 text-right text-sm">
-              ({sellerPrice}+{shipping}-{platformDiscount}-{shippingDiscount})
-            </td>
-            <td className="p-2 text-right">
-              {totalPaidByBuyer}
-            </td>
-          </tr>
+
           <tr className="text-red-600 hover:bg-red-50">
             <td className="p-2">ค่าธรรมเนียมมาร์เก็ตเพลส (vat 7%)</td>
             <td className="p-2 text-right text-sm">
-              ({sellerPrice}*{category.saleValue}%)
+              ({salePrice}*{category.saleValue}%)
             </td>
             <td className="p-2 text-right">{serviceFee.toFixed(2)}</td>
+          </tr>
+
+          <tr className="border-b border-gray-300 font-normal hover:bg-gray-100">
+            <td className="p-2">ยอดรวมหลังหักคูปอง และค่าธรรมเนียมการขาย</td>
+            <td className="p-2 text-right text-sm">
+              ({salePrice}+{discount}+{serviceFee.toFixed(2)})
+            </td>
+            <td className="p-2 text-right">
+              {sumSaleServiceShipping.toFixed(2)}
+            </td>
+          </tr>
+
+          <tr className="text-blue-600 hover:bg-blue-50">
+            <td className="p-2">ค่าส่งชำระโดยผู้ซื้อ</td>
+            <td className="p-2"></td>
+            <td className="p-2 text-right">{shipping}</td>
+          </tr>
+
+          <tr className="bg-gray-100 font-normal">
+            <td className="p-2">รวมยอดที่ผู้ซื้อชำระ</td>
+            <td className="p-2 text-right text-sm">
+              ({salePrice}+{shipping})
+            </td>
+            <td className="p-2 text-right underline underline-offset-2">
+              {sumPaidByBuyer}
+            </td>
           </tr>
 
           <tr className="border-b border-gray-300 text-red-600 hover:bg-red-50">
             <td className="p-2">ค่าธรรมเนียมการขายสินค้า (vat 7%)</td>
             <td className="p-2 text-right text-sm">
-              ({totalPaidByBuyer}*{(baseVatPct * 100).toFixed(2)}%)
+              ({sumPaidByBuyer}*{(baseVatPct * 100).toFixed(2)}%)
             </td>
             <td className="p-2 text-right">{transactionFee.toFixed(2)}</td>
           </tr>
-          
+
+          <tr className="text-blue-600 hover:bg-blue-50">
+            <td className="p-2">ค่าส่งชำระโดยผู้ขาย</td>
+            <td className="p-2"></td>
+            <td className="p-2 text-right">{shippingPaidBySeller}</td>
+          </tr>
+
+          <tr className="text-blue-600 hover:bg-blue-50">
+            <td className="p-2">ค่าส่งชำระโดยผู้ซื้อ</td>
+            <td className="p-2"></td>
+            <td className="p-2 text-right">{shipping}</td>
+          </tr>
+
+          <tr className="text-amber-600 hover:bg-amber-50">
+            <td className="p-2">คูปองส่วนลดค่าส่ง</td>
+            <td className="p-2"></td>
+            <td className="p-2 text-right">{shippingDiscount}</td>
+          </tr>
+
+          <tr className="border-b border-gray-300 bg-gray-100 font-normal">
+            <td className="p-2">ค่าขนส่งสุทธิที่ผู้ขายต้องชำระ</td>
+            <td className="p-2 text-right text-sm">
+              ({shippingPaidBySeller}-{shippingFromBuyer}-{shippingCoupon})
+            </td>
+            <td className="p-2 text-right">{totalShippingCost}</td>
+          </tr>
+
           <tr className="border-b border-gray-300 hover:bg-gray-100">
             <td className="p-2">ยอดเงินที่ร้านค้าจะได้รับ</td>
             <td className="p-2 text-right text-sm">
-              ({sellerPrice}-{serviceFee.toFixed(2)}-{transactionFee.toFixed(2)}
-              -{totalShippingCost})
+              ({totalPrice}-{sellerCoupon}-{serviceFee.toFixed(2)}-
+              {transactionFee.toFixed(2)}-{totalShippingCost})
             </td>
             <td className="p-2 text-right">{finalPrice.toFixed(2)}</td>
           </tr>
+
           <tr className="text-lg font-normal text-emerald-600 hover:bg-emerald-50">
             <td className="p-2">กำไรที่จะได้จากการขาย</td>
             <td className="p-2 text-right text-sm">
               ({finalPrice.toFixed(2)}-{cost})
             </td>
-            <td className="p-2 text-right">{profit.toFixed(2)}</td>
+            <td className="p-2 text-right underline underline-offset-2">
+              {profit.toFixed(2)}
+            </td>
           </tr>
         </tbody>
       </table>
