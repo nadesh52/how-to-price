@@ -56,12 +56,12 @@ export default function ResultLazada() {
             <td className="p-2"></td>
             <td className="p-2 text-right">{sellerCoupon}</td>
           </tr>
-          <tr className="border-b border-gray-300 font-medium hover:bg-gray-100">
+          <tr className="border-b border-gray-300 font-normal hover:bg-gray-100">
             <td className="p-2">ราคาขาย</td>
             <td className="p-2 text-right text-sm">
               ({price}-{discount})
             </td>
-            <td className="p-2 text-right underline underline-offset-4">
+            <td className="p-2 text-right">
               {sellerPrice}
             </td>
           </tr>
@@ -85,7 +85,7 @@ export default function ResultLazada() {
             <td className="p-2 text-right text-sm">
               ({shippingPaidByBuyer}+{shippingCoupon}-{shippingPaidBySeller})
             </td>
-            <td className="p-2 text-right underline underline-offset-4">
+            <td className="p-2 text-right">
               {totalShippingCost}
             </td>
           </tr>
@@ -99,7 +99,7 @@ export default function ResultLazada() {
             <td className="p-2 text-right text-sm">
               ({sellerPrice}+{shipping}-{platformDiscount}-{shippingDiscount})
             </td>
-            <td className="p-2 text-right underline underline-offset-4">
+            <td className="p-2 text-right">
               {totalPaidByBuyer}
             </td>
           </tr>

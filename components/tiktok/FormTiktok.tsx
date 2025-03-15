@@ -36,7 +36,7 @@ export default function FormTiktok () {
           คิดราคา Tiktok
         </h2>
         <Image
-          src="/assets/images/tiktok/tiktok_logo.png"
+          src="/how-to-price/assets/images/tiktok/tiktok_logo.png"
           height={51}
           width={51}
           alt="tiktok-logo"

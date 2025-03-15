@@ -11,6 +11,7 @@ const initialFormData = {
   shipping: 0,
   shopeeDiscount: 0,
   shopeeCoin: 0,
+  isFreeShipping:false,
 };
 
 export const ShopeeContext = createContext<any | undefined>(undefined);

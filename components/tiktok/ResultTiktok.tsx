@@ -40,12 +40,12 @@ export default function ResultTiktok() {
           </tr>
 
           {/* Seller Price after Discount */}
-          <tr className="border-b border-gray-300 font-medium hover:bg-gray-100">
+          <tr className="border-b border-gray-300 font-normal hover:bg-gray-100">
             <td className="p-2">ยอดรวมหลังหักส่วนลดผู้ขาย</td>
             <td className="p-2 text-right text-sm">
               ({price}-{discount})
             </td>
-            <td className="p-2 text-right underline underline-offset-4">
+            <td className="p-2 text-right">
               {sellerPrice > 0 ? sellerPrice : null}
             </td>
           </tr>
@@ -67,7 +67,7 @@ export default function ResultTiktok() {
           </tr>
 
           {/* Final Buyer Price */}
-          <tr className="border-b border-gray-300 font-normal underline underline-offset-2 hover:bg-gray-100">
+          <tr className="border-b border-gray-300 font-normal hover:bg-gray-100">
             <td className="p-2">ยอดที่ผู้ซื้อต้องจ่าย</td>
             <td className="p-2 text-right text-sm">
               {`(${sellerPrice}+${shipping}-${tiktokDiscount})`}

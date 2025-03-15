@@ -37,7 +37,7 @@ export default function FormLazada() {
           คิดราคา Lazada
         </h2>
         <Image
-          src="/assets/images/lazada/lazada_logo.png"
+          src="/how-to-price/assets/images/lazada/lazada_logo.png"
           height={51}
           width={51}
           alt="lazada-logo"

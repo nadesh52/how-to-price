@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
@@ -6,7 +7,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="bg-background mx-auto mb-9 flex max-w-screen-md items-center justify-between rounded-b-[24px] border-x-4 border-b-4 border-black px-8 py-4 shadow-[0px_16px_0px_0px_rgba(0,0,0,1)]">
+    <nav className="mx-auto mb-9 flex max-w-screen-md items-center justify-between rounded-b-[24px] border-x-4 border-b-4 border-black bg-background px-8 py-4 shadow-[0px_16px_0px_0px_rgba(0,0,0,1)]">
       <div className="select-none text-2xl font-normal italic tracking-wider">
         คิดราคา
       </div>
@@ -14,29 +15,29 @@ const Navbar = () => {
         <li
           className={
             pathname === "/shopee"
-              ? "text-accent font-medium" // Active link style
-              : "hover:text-accent font-medium transition-all duration-300"
+              ? "font-medium text-accent"
+              : "font-medium transition-all duration-300 hover:text-accent"
           }
         >
-          <a href="/shopee">Shopee</a>
+          <Link href="/shopee">Shopee</Link>
         </li>
         <li
           className={
             pathname === "/lazada"
-              ? "text-accent font-medium" // Active link style
-              : "hover:text-accent font-medium transition-all duration-300"
+              ? "font-medium text-accent"
+              : "font-medium transition-all duration-300 hover:text-accent"
           }
         >
-          <a href="/lazada">Lazada</a>
+          <Link href="/lazada">Lazada</Link>
         </li>
         <li
           className={
             pathname === "/tiktok"
-              ? "text-accent font-medium" // Active link style
-              : "hover:text-accent font-medium transition-all duration-300"
+              ? "font-medium text-accent"
+              : "font-medium transition-all duration-300 hover:text-accent"
           }
         >
-          <a href="/tiktok">Tiktok</a>
+          <Link href="/tiktok">Tiktok</Link>
         </li>
       </ul>
     </nav>

@@ -37,7 +37,7 @@ export default function CampaignSelectorShopee({ onSelect }: any) {
           />
           <label htmlFor="shopee1" className="radio">
             <Image
-              src="/assets/images/shopee/camp1.png"
+              src="/how-to-price/assets/images/shopee/camp1.png"
               width={65}
               height={25}
               alt="camp1"
@@ -56,7 +56,7 @@ export default function CampaignSelectorShopee({ onSelect }: any) {
           />
           <label htmlFor="shopee2" className="radio">
             <Image
-              src="/assets/images/shopee/camp2.png"
+              src="/how-to-price/assets/images/shopee/camp2.png"
               width={56}
               height={25}
               alt="camp2"
@@ -75,7 +75,7 @@ export default function CampaignSelectorShopee({ onSelect }: any) {
           />
           <label htmlFor="shopee3" className="radio">
             <Image
-              src="/assets/images/shopee/camp3.png"
+              src="/how-to-price/assets/images/shopee/camp3.png"
               width={116}
               height={25}
               alt="camp3"

@@ -3,9 +3,9 @@ const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
   output: isProd ? "export" : "standalone",
-  trailingSlash: true,
-  // basePath: "/how-to-price",
-  // assetPrefix: "/how-to-price/",
+  trailingSlash: false,
+  basePath: "/how-to-price",
+  assetPrefix: "/how-to-price",
   images: {
     unoptimized: true,
     remotePatterns: [

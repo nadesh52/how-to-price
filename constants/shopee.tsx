@@ -103,7 +103,7 @@ export const optionItemsShopee = [
 ];
 
 export const paymentItemsShopee = [
-  { title: "ชำระปกติ", value: 3 },
+  { title: "ชำระปกติ", value: 3.21 },
   { title: "Special SPayLater 1-2 เดือน", value: 3.21 },
   { title: "Special SPayLater 3 เดือน", value: 4.28 },
   { title: "Special SPayLater 5 เดือน", value: 5.89 },

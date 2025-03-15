@@ -11,7 +11,7 @@ export default function FormShopee() {
   const { setShopeeItem } = useShopee();
   const [formData, setFormData] = useState<any>({
     category: { title: "", saleValue: "" },
-    payment: { title: "ชำระปกติ", value: 3 },
+    payment: { title: "ชำระปกติ", value: 3.21 },
     program: 0,
     cost: 0,
     price: 0,
@@ -19,6 +19,7 @@ export default function FormShopee() {
     shipping: 0,
     shopeeDiscount: 0,
     shopeeCoin: 0,
+    isFreeShipping: false,
   });
 
   const handleChange = (e: any) => {
@@ -26,6 +27,13 @@ export default function FormShopee() {
     setFormData((prevData: any) => ({
       ...prevData,
       [id]: value,
+    }));
+  };
+
+  const handleToggle = () => {
+    setFormData((prev: any) => ({
+      ...prev,
+      isFreeShipping: !prev.isFreeShipping, // Toggle between true and false
     }));
   };
 
@@ -41,7 +49,7 @@ export default function FormShopee() {
           คิดราคา Shopee
         </h2>
         <Image
-          src="/assets/images/shopee/shopee_logo.webp"
+          src="/how-to-price/assets/images/shopee/shopee_logo.webp"
           height={51}
           width={36}
           alt="shopee-logo"
@@ -83,16 +91,41 @@ export default function FormShopee() {
             className="input"
           />
         </div>
-        <div className="mb-6 flex flex-col">
-          <label htmlFor="shipping" className="label text-blue-600">
-            ค่าส่ง
-          </label>
-          <input
-            type="number"
-            id="shipping"
-            onChange={handleChange}
-            className="input"
-          />
+        <div className="flex flex-row items-center gap-4">
+          <div className="mb-6 flex flex-col flex-1">
+            <label htmlFor="shipping" className="label">
+              ค่าส่ง
+            </label>
+            <input
+              type="number"
+              id="shipping"
+              onChange={handleChange}
+              className="input"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="isFreeShipping"
+              className="group relative flex flex-row items-center gap-2"
+            >
+              <input
+                type="checkbox"
+                id="isFreeShipping"
+                className="peer sr-only"
+                onChange={handleToggle}
+              />
+              <div className="h-10 w-24 rounded-full border-2 transition-all border-black bg-primary/5 px-1 peer-checked:bg-primary"></div>
+              <div className="absolute flex h-8 w-12 translate-x-1 translate-y-0 items-center justify-center rounded-full border-2 border-black bg-secondary transition-all duration-200 ease-in peer-checked:translate-x-11">
+                <p className="text-center font-medium text-white group-has-[:checked]:hidden">
+                  ปิด
+                </p>
+                <p className="hidden text-center font-medium text-white group-has-[:checked]:block">
+                  เปิด
+                </p>
+              </div>
+              <p className="text-lg font-normal">ส่งฟรีจากผู้ขาย</p>
+            </label>
+          </div>
         </div>
         <Line />
 

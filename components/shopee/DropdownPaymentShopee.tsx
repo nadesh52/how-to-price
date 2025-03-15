@@ -7,7 +7,7 @@ export default function DropdownPaymentShopee ({ onSelect }:any)  {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState<any>({
     title: "ชำระปกติ",
-    value: 3,
+    value: 3.21,
   });
 
   const listRef = useRef(null);
